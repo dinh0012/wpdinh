@@ -1,0 +1,2 @@
+# wpdinh
+wordpress project
