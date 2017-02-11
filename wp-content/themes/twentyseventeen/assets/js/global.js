@@ -71,11 +71,11 @@
 				}
 
 				// If the scroll is more than the custom header, set the fixed class.
-				if ( $( window ).scrollTop() >= headerOffset ) {
+			/*	if ( $( window ).scrollTop() >= headerOffset ) {
 					$navigation.addClass( navigationFixedClass );
 				} else {
 					$navigation.removeClass( navigationFixedClass );
-				}
+				}*/
 
 			} else {
 

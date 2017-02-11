@@ -564,3 +564,39 @@ require get_parent_theme_file_path( '/inc/customizer.php' );
  * SVG icons functions and filters.
  */
 require get_parent_theme_file_path( '/inc/icon-functions.php' );
+
+function sw_human_time_diff() {
+	global $post;
+	$date = get_post_time('G', true, $post);
+	$langs = array('giây', 'phút', 'giờ', 'ngày', 'tuần', 'tháng', 'năm');
+	$chunks = array(
+		array( 60 * 60 * 24 * 365 , __( $langs[6], 'swhtd' ), __( $langs[6], 'swhtd' ) ),
+		array( 60 * 60 * 24 * 30 , __( $langs[5], 'swhtd' ), __( $langs[5], 'swhtd' ) ),
+		array( 60 * 60 * 24 * 7, __( $langs[4], 'swhtd' ), __( $langs[4], 'swhtd' ) ),
+		array( 60 * 60 * 24 , __( $langs[3], 'swhtd' ), __( $langs[3], 'swhtd' ) ),
+		array( 60 * 60 , __( $langs[2], 'swhtd' ), __( $langs[2], 'swhtd' ) ),
+		array( 60 , __( $langs[1], 'swhtd' ), __( $langs[1], 'swhtd' ) ),
+		array( 1, __( $langs[0], 'swhtd' ), __( $langs[0], 'swhtd' ) )
+	);
+	if ( !is_numeric( $date ) ) {
+		$time_chunks = explode( ':', str_replace( ' ', ':', $date ) );
+		$date_chunks = explode( '-', str_replace( ' ', '-', $date ) );
+		$date = gmmktime( (int)$time_chunks[1], (int)$time_chunks[2], (int)$time_chunks[3], (int)$date_chunks[1], (int)$date_chunks[2], (int)$date_chunks[0] );
+	}
+	$current_time = current_time( 'mysql', $gmt );
+	$newer_date = ( !$newer_date ) ? strtotime( $current_time ) : $newer_date;
+	$since = $newer_date - $date;
+	if ( 0 > $since )
+		return __( 'Gần đây', 'swhtd' );
+	for ( $i = 0, $j = count($chunks); $i < $j; $i++) {
+		$seconds = $chunks[$i][0];
+		if ( ( $count = floor($since / $seconds) ) != 0 )
+			break;
+	}
+	$output = ( 1 == $count ) ? '1 '. $chunks[$i][1] : $count . ' ' . $chunks[$i][2];
+	if ( !(int)trim($output) ){
+		$output = '0 ' . __( $langs[0], 'swhtd' );
+	}
+	$output .= __(' trước', 'swhtd');
+	return $output;
+}

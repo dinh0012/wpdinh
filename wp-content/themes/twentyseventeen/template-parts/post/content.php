@@ -50,11 +50,12 @@
 	<div class="entry-content">
 		<?php
 			/* translators: %s: Name of current post */
-			the_content( sprintf(
+			 the_content( sprintf(
 				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ),
 				get_the_title()
 			) );
-
+		$content = get_the_content();
+		preg_match_all('/(src)=("[^"]*")/i', $content, $match);
 			wp_link_pages( array(
 				'before'      => '<div class="page-links">' . __( 'Pages:', 'twentyseventeen' ),
 				'after'       => '</div>',

@@ -28,26 +28,17 @@
 
 	<header id="masthead" class="site-header" role="banner">
 
-		<?php get_template_part( 'template-parts/header/header', 'image' ); ?>
+
 
 		<?php if ( has_nav_menu( 'top' ) ) : ?>
-			<div class="navigation-top">
+			<div class="navigation-top site-navigation-fixed">
 				<div class="wrap">
 					<?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>
 				</div><!-- .wrap -->
 			</div><!-- .navigation-top -->
 		<?php endif; ?>
-
+		<?php get_template_part( 'template-parts/header/header', 'image' ); ?>
 	</header><!-- #masthead -->
-
-	<?php
-	// If a regular post or page, and not the front page, show the featured image.
-	if ( has_post_thumbnail() && ( is_single() || ( is_page() && ! twentyseventeen_is_frontpage() ) ) ) :
-		echo '<div class="single-featured-image-header">';
-		the_post_thumbnail( 'twentyseventeen-featured-image' );
-		echo '</div><!-- .single-featured-image-header -->';
-	endif;
-	?>
 
 	<div class="site-content-contain">
 		<div id="content" class="site-content">
