@@ -5637,3 +5637,10 @@ function wp_cache_get_last_changed( $group ) {
 
 	return $last_changed;
 }
+function dd($x)
+{
+	echo '<pre>';
+	var_dump($x);
+	echo '</pre>';
+
+}
