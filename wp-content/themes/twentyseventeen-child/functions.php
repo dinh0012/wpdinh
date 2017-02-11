@@ -25,13 +25,13 @@ function tao_custom_post_type()
         'supports' => array(
             'title',
             'editor',
-            'excerpt',
-            'author',
+         /*   'excerpt',
+            'author',*/
             'thumbnail',
             'comments',
-            'trackbacks',
+          /*  'trackbacks',
             'revisions',
-            'custom-fields'
+            'custom-fields'*/
         ), //Các tính năng được hỗ trợ trong post type
         'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
         'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
@@ -49,25 +49,25 @@ function tao_custom_post_type()
         'capability_type' => 'post' //
     );
 
-    /*register_post_type('sanpham', $args);*/ //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
+    register_post_type('sanpham', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
 
 }
 
 /* Kích hoạt hàm tạo custom post type */
-/*add_action('init', 'tao_custom_post_type');*/
-/*add_filter('pre_get_posts','lay_custom_post_type');
+add_action('init', 'tao_custom_post_type');
+add_filter('pre_get_posts','lay_custom_post_type');
 function lay_custom_post_type($query) {
     if (is_home() && $query->is_main_query ())
         $query->set ('post_type', array ('post','sanpham'));
     return $query;
-}*/
+}
 
 function add_your_fields_meta_box() {
     add_meta_box(
         'meta_box', // $id
         'Your Fields', // $title
         'form', // $callback
-        'san_pham', // $screen
+        'sanpham', // $screen
         'normal', // $context
         'high' // $priority
     );
