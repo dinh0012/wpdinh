@@ -31,7 +31,7 @@ function create_widget() {
          register_widget('Members');
 }
 
-function create_youtube_shortcode( $args, $content ) {
+/*function create_youtube_shortcode( $args, $content ) {
         $content = '<iframe src="//www.youtube.com/embed/'.$args['id'].'" height=" '.$args['height'].'" width="'.$args['width'].'" allowfullscreen="" frameborder="0"></iframe>';
  return $content;
 }
@@ -41,4 +41,4 @@ function create_banner_shortcode( $args, $content ) {
         $content = '<iframe src="//www.youtube.com/embed/'.$args['id'].'" height=" '.$args['height'].'" width="'.$args['width'].'" allowfullscreen="" frameborder="0"></iframe>';
  return $content;
 }
-add_shortcode('youtube', 'create_youtube_shortcode');
+add_shortcode('youtube', 'create_youtube_shortcode');*/

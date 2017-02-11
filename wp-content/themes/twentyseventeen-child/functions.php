@@ -33,7 +33,7 @@ function tao_custom_post_type()
             'revisions',
             'custom-fields'*/
         ), //Các tính năng được hỗ trợ trong post type
-        'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'taxonomies' => array( 'loai-san-pham', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
         'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
         'public' => true, //Kích hoạt post type
         //'show_ui' => true, //Hiển thị khung quản trị như Post/Page
@@ -52,6 +52,35 @@ function tao_custom_post_type()
     register_post_type('sanpham', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
 
 }
+function tao_taxonomy() {
+
+    /* Biến $label chứa các tham số thiết lập tên hiển thị của Taxonomy
+     */
+    $labels = array(
+        'name' => 'Các loại sản phẩm',
+        'singular' => 'Loại sản phẩm',
+        'menu_name' => 'Loại sản phẩm'
+    );
+
+    /* Biến $args khai báo các tham số trong custom taxonomy cần tạo
+     */
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+
+    /* Hàm register_taxonomy để khởi tạo taxonomy
+     */
+    register_taxonomy('loai-san-pham', 'sanpham', $args);
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'tao_taxonomy', 0 );
 
 /* Kích hoạt hàm tạo custom post type */
 add_action('init', 'tao_custom_post_type');
