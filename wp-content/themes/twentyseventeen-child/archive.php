@@ -39,7 +39,7 @@ get_header(); ?>
 					} else { $p3 = ''; }
 					?>
 
-				<div <?php post_class($p3); ?> id="product-<?php the_ID(); ?>">
+				<div class="col-xs-6 col-md-4 " id="product-<?php the_ID(); ?>">
 					<?php the_post_thumbnail('medium',array('class' => 'product-thumb') ); ?>
 					<a href="<?php the_permalink(); ?>"><h3 class="title-sp"><?php the_title(); ?></h3></a>
 					<div class="info">
@@ -76,6 +76,7 @@ get_header(); ?>
 		.title-sp{
 			font-size: 16px;
 			padding-top: 10px !important;
+			min-height: 54px;
 		}
 		#content #primary{
 			width: 100%;
@@ -107,11 +108,11 @@ get_header(); ?>
 			clear: both;
 			padding-top: 15px;
 		}
-		.sanpham {
+	/*	.sanpham {
 			width: 30.3333%;
 			float: left;
 			margin-right: 3%;
-		}
+		}*/
 
 	</style>
 <?php get_footer();

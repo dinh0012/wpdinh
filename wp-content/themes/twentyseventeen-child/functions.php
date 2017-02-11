@@ -59,7 +59,8 @@ function tao_taxonomy() {
     $labels = array(
         'name' => 'Các loại sản phẩm',
         'singular' => 'Loại sản phẩm',
-        'menu_name' => 'Loại sản phẩm'
+        'menu_name' => 'Loại sản phẩm',
+        'add_new_item'=>'Thêm loại sản phẩm'
     );
 
     /* Biến $args khai báo các tham số trong custom taxonomy cần tạo
@@ -72,6 +73,7 @@ function tao_taxonomy() {
         'show_admin_column'          => true,
         'show_in_nav_menus'          => true,
         'show_tagcloud'              => true,
+        //'capabilities'                  =>['edit_terms'=>'aaaaaa']
     );
 
     /* Hàm register_taxonomy để khởi tạo taxonomy
