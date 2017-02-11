@@ -24,7 +24,9 @@ if(!is_admin()){
   }
 
 require_once WIDGET_DIR. '/widget_demo.php';
+require_once WIDGET_DIR. '/members.php';
 add_action( 'widgets_init', 'create_widget' );
 function create_widget() {
         register_widget('Widget_Demo');
+         register_widget('Members');
 }
