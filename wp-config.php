@@ -26,7 +26,7 @@ define('DB_NAME', 'u629339859_wp');
 define('DB_USER', 'u629339859_root');
 
 /** MySQL database password */
-define('DB_PASSWORD', '9JJnLyy0QYAS');
+define('DB_PASSWORD', 'hfWCpbMw0rku');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
