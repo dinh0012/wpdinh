@@ -52,8 +52,8 @@ get_header(); ?>
                 ?>
 
             </main><!-- #main -->
-            <div class="fb-comments" xid="<?php the_ID(); ?> data-numposts="20" data-colorscheme="light" data-version="v2.3"></div>
-
+          
+            <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-numposts="10"></div>
         </div><!-- #primary -->
         <?php get_sidebar(); ?>
 
