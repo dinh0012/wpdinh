@@ -31,7 +31,7 @@
 
 
 		<?php if ( has_nav_menu( 'top' ) ) : ?>
-			<div class="navigation-top site-navigation-fixed">
+			<div class="navigation-top ">
 				<div class="wrap">
 					<?php get_template_part( 'template-parts/navigation/navigation', 'top' ); ?>
 				</div><!-- .wrap -->
