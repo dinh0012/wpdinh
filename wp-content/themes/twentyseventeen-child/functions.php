@@ -118,7 +118,7 @@ function add_your_fields_meta_box() {
         'normal', // $context
         'high' // $priority
     );
-    add_meta_box( 'woocommerce-product-images', 'thu vien', 'output', 'sanpham', 'side', 'low' );
+    add_meta_box( 'woocommerce-product-images', 'Thư Viện Ảnh', 'output', 'sanpham', 'side', 'low' );
 }
 function output( $post ) {
     ?>
