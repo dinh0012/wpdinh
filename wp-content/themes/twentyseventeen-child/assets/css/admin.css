@@ -122,8 +122,9 @@
 #woocommerce-product-images .inside #product_images_container ul li:hover ul.actions {
     display: block
 }
-
-
-#woocommerce-product-images .inside #product_images_container ul:after {
-	  clear: both;
-  }
+#woocommerce-product-images .inside {
+    margin: 0;
+    padding: 0;
+}#woocommerce-product-images .inside .add_product_images {
+     padding: 0 12px 12px;
+ }
