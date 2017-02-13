@@ -141,7 +141,6 @@ function output( $post ) {
             if ( ! empty( $attachments ) ) {
                 foreach ( $attachments as $attachment_id ) {
                     $attachment = wp_get_attachment_image( $attachment_id, 'thumbnail' );
-
                     // if attachment is empty skip
                     if ( empty( $attachment ) ) {
                         $update_meta = true;
