@@ -1,6 +1,5 @@
 /* global twentyseventeenScreenReaderText */
 (function( $ ) {
-
 	// Variables and DOM Caching.
 	var $body = $( 'body' ),
 		$customHeader = $body.find( '.banner' ),
