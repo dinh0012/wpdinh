@@ -2,12 +2,9 @@
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 function my_theme_enqueue_styles() {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
-
 }
-
 function tao_custom_post_type()
 {
-
     /*
      * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
      */
@@ -182,9 +179,9 @@ function register_setting_and_field(){
         'validate_setting'
     );
 
-    //add_settings_section('title_section', 'Setting Title', '', 'theme-setting');
+    add_settings_section('set_footer_section', 'Setting Footer', '', 'theme-setting');
     add_settings_section('set_header_section', 'Setting Header', '', 'theme-setting');
-    //add_settings_field('kenshin_new_title','Site Title', 'new_title_input', 'theme-setting','title_section');
+    add_settings_field('footer','Select Header', 'footer_setting', 'theme-setting','set_footer_section');
     add_settings_field('header','
                             Select Header', 'header_setting', 'theme-setting', 'set_header_section');
 
@@ -199,9 +196,12 @@ function header_setting(){
     <input type="radio" name="theme_option[header]" <?php echo ($setting_option['header'] ==2 ?  'checked':'')?> value="2">Header 2<br>
     <?php
 }
-function new_title_input(){
+function footer_setting(){
     $setting_option = get_option('theme_option');
-    echo '<input type="text" name="theme_option[kenshin_new_title]" value="'.$setting_option['kenshin_new_title'].'" />';
+    ?>
+    <input type="radio" name="theme_option[footer]" <?php echo ($setting_option['footer'] ==1 ?  'checked':'')?> value="1">Footer 1<br>
+    <input type="radio" name="theme_option[footer]" <?php echo ($setting_option['footer'] ==2 ?  'checked':'')?> value="2">Footer 2<br>
+    <?php
 }
 ?>
 
