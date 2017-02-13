@@ -3,7 +3,7 @@
 
 	// Variables and DOM Caching.
 	var $body = $( 'body' ),
-		$customHeader = $body.find( '.custom-header' ),
+		$customHeader = $body.find( '.banner' ),
 		$branding = $customHeader.find( '.site-branding' ),
 		$navigation = $body.find( '.navigation-top' ),
 		$navWrap = $navigation.find( '.wrap' ),
