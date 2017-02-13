@@ -158,4 +158,51 @@ function form($post) {
     echo '</div>';
 }
 add_action( 'add_meta_boxes', 'add_your_fields_meta_box' );
+
+
+//*******************************************THEME SETTING*****************************************************
+function settingMenu(){
+    add_menu_page(
+        'Theme Setting',
+        'Theme Setting',
+        'manage_options',
+        'theme-setting',
+        'themeSetting'
+    );
+}
+function themeSetting(){
+    include_once 'views/setting_theme.php';
+}
+add_action('admin_menu','settingMenu');
+add_action('admin_init', 'register_setting_and_field');
+function register_setting_and_field(){
+    register_setting(
+        'theme_setting_options',
+        'theme_option',
+        'validate_setting'
+    );
+
+    //add_settings_section('title_section', 'Setting Title', '', 'theme-setting');
+    add_settings_section('set_header_section', 'Setting Header', '', 'theme-setting');
+    //add_settings_field('kenshin_new_title','Site Title', 'new_title_input', 'theme-setting','title_section');
+    add_settings_field('header','
+                            Select Header', 'header_setting', 'theme-setting', 'set_header_section');
+
+}
+function validate_setting($data_input){
+    return $data_input;
+}
+function header_setting(){
+    $setting_option = get_option('theme_option');
+    ?>
+    <input type="radio" name="theme_option[header]" <?php echo ($setting_option['header'] ==1 ?  'checked':'')?> value="1">Header 1<br>
+    <input type="radio" name="theme_option[header]" <?php echo ($setting_option['header'] ==2 ?  'checked':'')?> value="2">Header 2<br>
+    <?php
+}
+function new_title_input(){
+    $setting_option = get_option('theme_option');
+    echo '<input type="text" name="theme_option[kenshin_new_title]" value="'.$setting_option['kenshin_new_title'].'" />';
+}
 ?>
+
+

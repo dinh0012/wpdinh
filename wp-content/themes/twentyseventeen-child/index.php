@@ -14,8 +14,8 @@
  * @since 1.0
  * @version 1.0
  */
-
-get_header(); ?>
+$setting_option = get_option('theme_option');
+get_header($setting_option['header']); ?>
 
 <div class="wrap">
 	<?php if ( is_home() && ! is_front_page() ) : ?>
