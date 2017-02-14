@@ -18,16 +18,15 @@ get_header(); ?>
                 <?php
                 /* Start the Loop */
                 while (have_posts()) : the_post();
-
+                    $image_gallery = get_post_meta($post->ID, 'image_gallery', true);
+                    $arr_image_gallery = explode(',', $image_gallery);
                     ?>
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                     <header>
-
                         <!-- Modal -->
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
-
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -38,48 +37,33 @@ get_header(); ?>
                                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                                             <!-- Indicators -->
                                             <ol class="carousel-indicators">
-                                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                                <li data-target="#myCarousel" data-slide-to="1"></li>
-                                                <li data-target="#myCarousel" data-slide-to="2"></li>
-                                                <li data-target="#myCarousel" data-slide-to="3"></li>
+                                                <?php $i = 0;
+                                                foreach ($arr_image_gallery as $image): ?>
+                                                    <li data-target="#myCarousel"
+                                                        data-slide-to="<?php echo $i; ?>"<?php echo ($i == 0) ? 'class="active"' : '';
+                                                    $i++; ?> >
+
+                                                    </li>
+                                                <?php endforeach; ?>
                                             </ol>
 
                                             <!-- Wrapper for slides -->
                                             <div class="carousel-inner" role="listbox">
-
-                                                <div class="item active">
-                                                    <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg" alt="Chania" width="460" height="345">
+                                                <?php $i = 0;
+                                                foreach ($arr_image_gallery as $image):
+                                                    $attachment = wp_get_attachment_image( $image, ['460','345'] );?>
+                                                <div class="item <?php echo ($i == 0) ? 'active' : '';
+                                                $i++; ?>">
+                                                   <!-- <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg"
+                                                         alt="Chania" width="460" height="345">-->
+                                                    <?php echo $attachment ?>
                                                     <div class="carousel-caption">
-                                                        <h3>Chania</h3>
+                                                       <!-- <h3>Chania</h3>
                                                         <p>The atmosphere in Chania has a touch of Florence and
-                                                            Venice.</p>
+                                                            Venice.</p>-->
                                                     </div>
                                                 </div>
-
-                                                <div class="item">
-                                                    <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg" alt="Chania" width="460" height="345">
-                                                    <div class="carousel-caption">
-                                                        <h3>Chania</h3>
-                                                        <p>The atmosphere in Chania has a touch of Florence and
-                                                            Venice.</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="item">
-                                                    <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg" alt="Flower" width="460" height="345">
-                                                    <div class="carousel-caption">
-                                                        <h3>Flowers</h3>
-                                                        <p>Beatiful flowers in Kolymbari, Crete.</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="item">
-                                                    <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg" alt="Flower" width="460" height="345">
-                                                    <div class="carousel-caption">
-                                                        <h3>Flowers</h3>
-                                                        <p>Beatiful flowers in Kolymbari, Crete.</p>
-                                                    </div>
-                                                </div>
+                                                <?php endforeach; ?>
 
                                             </div>
 
