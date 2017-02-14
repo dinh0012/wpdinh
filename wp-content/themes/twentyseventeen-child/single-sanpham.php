@@ -10,7 +10,28 @@
  * @version 1.0
  */
 
-get_header(); ?>
+                    add_action('wp_head', 'fb_meta');
+                    function fb_meta()
+                    {
+                        ?>
+                        <meta property='og:title' content='<?php echo the_title() ?>' />
+                <meta property='og:type' content='article' />
+                <meta property='og:url' content='<?php echo the_permalink(); ?>' />
+                <meta property='og:image' content='<?php echo get_the_post_thumbnail_url(); ?>' />
+                <meta property='og:description' content='<?php echo get_post_field('post_content', $post->ID); ?>' />
+                <meta property='og:site_name' content='<?php echo the_title(); ?>' />
+                <meta property='article:published_time' content='2013-09-17T05:59:00+01:00' />
+                <meta property='article:modified_time' content='2013-09-16T19:08:47+01:00' />
+                <meta property='article:section' content='Chuyên mục' />
+                <meta property='article:tag' content='Từ khóa' />
+                <meta property='fb:admins' content='Facebook numberic ID' />
+<?php
+                    }
+
+get_header();
+
+?>
+
 
     <div class="wrap">
         <div id="primary" class="content-area">
@@ -21,6 +42,7 @@ get_header(); ?>
                     $image_gallery = get_post_meta($post->ID, 'image_gallery', true);
                     $arr_image_gallery = explode(',', $image_gallery);
                     ?>
+
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                     <header>
@@ -51,7 +73,7 @@ get_header(); ?>
                                             <div class="carousel-inner" role="listbox">
                                                 <?php $i = 0;
                                                 foreach ($arr_image_gallery as $image):
-                                                    $attachment = wp_get_attachment_image( $image, ['460','345'] );?>
+                                                    $attachment = wp_get_attachment_image( $image, 'full' );?>
                                                 <div class="item <?php echo ($i == 0) ? 'active' : '';
                                                 $i++; ?>">
                                                    <!-- <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg"
