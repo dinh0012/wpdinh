@@ -18,7 +18,7 @@
                 <meta property='og:type' content='article' />
                 <meta property='og:url' content='<?php echo the_permalink(); ?>' />
                 <meta property='og:image' content='<?php echo get_the_post_thumbnail_url(); ?>' />
-                <meta property='og:description' content='<?php echo get_post_field('post_content', $post->ID); ?>' />
+                <meta property='og:description' content='<?php echo substr(get_post_field('post_content', $post->ID),0,250); ?>' />
                 <meta property='og:site_name' content='<?php echo the_title(); ?>' />
                 <meta property='article:published_time' content='2013-09-17T05:59:00+01:00' />
                 <meta property='article:modified_time' content='2013-09-16T19:08:47+01:00' />
