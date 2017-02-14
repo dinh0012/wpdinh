@@ -16,55 +16,147 @@
  */
 $setting_option = get_option('theme_option');
 //get_header($setting_option['header']);
-get_template_part('header/header-'.$setting_option['header'] );
+get_template_part('header/header-' . $setting_option['header']);
 ?>
-<div class="wrap">
-	<?php if ( is_home() && ! is_front_page() ) : ?>
-		<header class="page-header">
-			<h1 class="page-title"><?php single_post_title(); ?></h1>
-		</header>
-	<?php else : ?>
-	<header class="page-header">
-		<h2 class="page-title"><?php _e( 'Posts', 'twentyseventeen' ); ?></h2>
-	</header>
-	<?php endif; ?>
+    <div class="wrap">
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+        <?php $taxonomies = get_taxonomies(['name' => 'loai-san-pham'], 'object');
 
-			<?php
-			if ( have_posts() ) :
+        foreach ($taxonomies as $taxonomy):
+            $loai_sp = get_terms($taxonomy->name);
+            foreach ($loai_sp as $sp):
+                if (have_posts()) :
+                    ?>
+                    <header class="page-header">
+                        <?php
+                        echo '<h1 class="page-title">' . $sp->name . '</h1>';
+                        //the_archive_description( '<div class="taxonomy-description">', '</div>' );
+                        ?>
+                    </header><!-- .page-header -->
+                <?php endif; ?>
 
-				/* Start the Loop */
-				while ( have_posts() ) : the_post();
+                <div id="primary" class="content-area">
+                    <main id="main" class="site-main" role="main">
+                        <?php
+                        if (have_posts()) : ?>
+                            <?php
+                            /* Start the Loop */
+                            $count = 0;
+                            /* Start the Loop */
+                            $temp = $wp_query;
+                            $wp_query = null;
+                            $arr = [
+                                'tax_query' => [
+                                    ['taxonomy' => $taxonomy->name,
+                                        'terms' => $sp->term_id
+                                    ]
+                                ],
+                                'post_type' => [
+                                    'my-post-type' => 'sanpham'
+                                ],
+                                'posts_per_page' => 6
+                            ];
+                            $wp_query = new WP_Query($arr);
+                            //$wp_query->query('showposts=6&post_type=sanpham');
+                            $count = 0;
+                            while ($wp_query->have_posts()) : $wp_query->the_post();
+                                $count++;
+                                if ($count == 4) {
+                                    $p3 = 'thrid';
+                                    $count = 0;
+                                } else {
+                                    $p3 = '';
+                                }
+                                ?>
+                                <div class="col-xs-6 col-md-4 " id="product-<?php the_ID(); ?>">
+                                    <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('medium', array('class' => 'product-thumb')); ?> </a>
+                                    <a href="<?php the_permalink(); ?>"><h3 class="title-sp"><?php the_title(); ?></h3>
+                                    </a>
+                                    <div class="info">
+                                        <p style="margin-top: 5px;">
+                                            Giá: <?php echo get_post_meta($post->ID, 'price', true); ?></p>
+                                        <p class="product-status">
+                                            <?php
+                                            $product_status = get_post_meta($post->ID, 'author', true);
 
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'template-parts/post/content', get_post_format() );
+                                            ?>
+                                        </p><!--Tình trạng sản phẩm-->
+                                        <a class="order-button" href="<?php the_permalink(); ?>">Xem chi tiết</a>
+                                    </div>
+                                </div>
 
-				endwhile;
+                            <?php endwhile;
 
-				the_posts_pagination( array(
-					'prev_text' => twentyseventeen_get_svg( array( 'icon' => 'arrow-left' ) ) . '<span class="screen-reader-text">' . __( 'Previous page', 'twentyseventeen' ) . '</span>',
-					'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'twentyseventeen' ) . '</span>' . twentyseventeen_get_svg( array( 'icon' => 'arrow-right' ) ),
-					'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentyseventeen' ) . ' </span>',
-				) );
+                            the_posts_pagination(array(
+                                'prev_text' => twentyseventeen_get_svg(array('icon' => 'arrow-left')) . '<span class="screen-reader-text">' . __('Previous page', 'twentyseventeen') . '</span>',
+                                'next_text' => '<span class="screen-reader-text">' . __('Next page', 'twentyseventeen') . '</span>' . twentyseventeen_get_svg(array('icon' => 'arrow-right')),
+                                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'twentyseventeen') . ' </span>',
+                            ));
 
-			else :
+                        else :
 
-				get_template_part( 'template-parts/post/content', 'none' );
+                            get_template_part('template-parts/post/content', 'none');
 
-			endif;
-			?>
+                        endif; ?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
-	<?php get_sidebar(); ?>
-</div><!-- .wrap -->
+                    </main><!-- #main -->
+                </div><!-- #primary -->
+            <?php endforeach;
+        endforeach; ?>
+        <?php get_sidebar(); ?>
+    </div><!-- .wrap -->
+    <style>
+        .title-sp {
+            font-size: 16px;
+            padding-top: 10px !important;
+            min-height: 54px;
+        }
+
+        #content #primary {
+            width: 100%;
+        }
+
+        .product-thumb {
+            float: left;
+        }
+
+        .product-info {
+            width: 45%;
+            margin-left: 5%;
+            float: right;
+        }
+
+        .product-info h1 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .product-price, .product-status, .product-description {
+            margin: 5px 0;
+        }
+
+        .order-button {
+            color: #fff;
+            background: rgb(33, 189, 12);
+            text-decoration: none;
+            padding: 5px;
+            margin: 15px 0;
+            display: table;
+        }
+
+        .post-info {
+            clear: both;
+            padding-top: 15px;
+        }
+
+        /*	.sanpham {
+                width: 30.3333%;
+                float: left;
+                margin-right: 3%;
+            }*/
+
+    </style>
 <?php //get_footer();
 $setting_option = get_option('theme_option');
 //get_header($setting_option['header']);
-get_template_part('footer/footer-'.$setting_option['footer'],'none' );
+get_template_part('footer/footer-' . $setting_option['footer'], 'none');
