@@ -315,6 +315,29 @@ function footer_setting()
     <?php
 }
 
+//*************************Woocommerce********************************
+
+function tp_sale_flash( $output ) {
+    $output = '<span style="text-decoration: line-through;color: red; class="thachpham">' . __( 'Giảm giá', 'woocommerce' ) . '</span>';
+    return $output;
+}
+add_filter( 'woocommerce_sale_flash', 'tp_sale_flash' );
+add_action('xem_ngay','view_now');
+function view_now( $output ) {
+    $output = '<span style="font-size:18px;font-weight: 600;color: red; class="thachpham">' . __( 'Xem chi tiết', 'woocommerce' ) . '</span>';
+    echo $output;
+}
+function test( $output ) {
+    $output = '<span style="font-size:18px;font-weight: 600;color: red; class="thachpham">' . __( 'Xem chi tiết', 'woocommerce' ) . '</span>';
+    echo $output;
+}
+function remove_ac(){
+    remove_action('woocommerce_single_product_summary','woocommerce_template_single_title');
+
+}
+add_action('init','remove_ac');
+add_action('woocommerce_single_product_summary','test',22);
+
 ?>
 
 

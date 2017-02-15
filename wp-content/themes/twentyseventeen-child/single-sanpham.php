@@ -9,30 +9,25 @@
  * @since 1.0
  * @version 1.0
  */
-
-                    add_action('wp_head', 'fb_meta');
-                    function fb_meta()
-                    {
-                        ?>
-                        <meta property='og:title' content='<?php echo the_title() ?>' />
-                <meta property='og:type' content='article' />
-                <meta property='og:url' content='<?php echo the_permalink(); ?>' />
-                <meta property='og:image' content='<?php echo get_the_post_thumbnail_url(); ?>' />
-                <meta property='og:description' content='<?php echo substr(get_post_field('post_content', $post->ID),0,250); ?>' />
-                <meta property='og:site_name' content='<?php echo the_title(); ?>' />
-                <meta property='article:published_time' content='2013-09-17T05:59:00+01:00' />
-                <meta property='article:modified_time' content='2013-09-16T19:08:47+01:00' />
-                <meta property='article:section' content='Chuyên mục' />
-                <meta property='article:tag' content='Từ khóa' />
-                <meta property='fb:admins' content='Facebook numberic ID' />
-<?php
-                    }
-
+add_action('wp_head', 'fb_meta');
+function fb_meta()
+{
+    ?>
+    <meta property='og:title' content='<?php echo the_title() ?>'/>
+    <meta property='og:type' content='article'/>
+    <meta property='og:url' content='<?php echo the_permalink(); ?>'/>
+    <meta property='og:image' content='<?php echo get_the_post_thumbnail_url(); ?>'/>
+    <meta property='og:description' content='<?php echo substr(get_post_field('post_content', $post->ID), 0, 250); ?>'/>
+    <meta property='og:site_name' content='<?php echo the_title(); ?>'/>
+    <meta property='article:published_time' content='2013-09-17T05:59:00+01:00'/>
+    <meta property='article:modified_time' content='2013-09-16T19:08:47+01:00'/>
+    <meta property='article:section' content='Chuyên mục'/>
+    <meta property='article:tag' content='Từ khóa'/>
+    <meta property='fb:admins' content='Facebook numberic ID'/>
+    <?php
+}
 get_header();
-
 ?>
-
-
     <div class="wrap">
         <div id="primary" class="content-area">
             <main id="main" class="site-main" role="main">
@@ -43,7 +38,6 @@ get_header();
                     $arr_image_gallery = explode(',', $image_gallery);
                     ?>
 
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
                     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                     <header>
                         <!-- Modal -->
@@ -73,18 +67,18 @@ get_header();
                                             <div class="carousel-inner" role="listbox">
                                                 <?php $i = 0;
                                                 foreach ($arr_image_gallery as $image):
-                                                    $attachment = wp_get_attachment_image( $image, 'full' );?>
-                                                <div class="item <?php echo ($i == 0) ? 'active' : '';
-                                                $i++; ?>">
-                                                   <!-- <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg"
-                                                         alt="Chania" width="460" height="345">-->
-                                                    <?php echo $attachment ?>
-                                                    <div class="carousel-caption">
-                                                       <!-- <h3>Chania</h3>
-                                                        <p>The atmosphere in Chania has a touch of Florence and
-                                                            Venice.</p>-->
+                                                    $attachment = wp_get_attachment_image($image, 'full'); ?>
+                                                    <div class="item <?php echo ($i == 0) ? 'active' : '';
+                                                    $i++; ?>">
+                                                        <!-- <img src="http://vuonhoa.vn/userfiles/images/vuon-dung-14.jpg"
+                                                              alt="Chania" width="460" height="345">-->
+                                                        <?php echo $attachment ?>
+                                                        <div class="carousel-caption">
+                                                            <!-- <h3>Chania</h3>
+                                                             <p>The atmosphere in Chania has a touch of Florence and
+                                                                 Venice.</p>-->
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 <?php endforeach; ?>
 
                                             </div>
