@@ -36,6 +36,7 @@ class Hot_News extends WP_Widget
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['num_post'] = strip_tags($new_instance['num_post']);
+        $instance['interval'] = strip_tags($new_instance['interval']);
         $cat = implode(',', $new_instance['cat']);
 
         $instance['cat'] = $cat;
@@ -64,7 +65,17 @@ class Hot_News extends WP_Widget
         $html = '';
         $html .= '<p>';
         $html .= '<label for=' . $inputID . '>Number Post :</label>';
-        $html .= '<input class="widefat" type="text" name= "' . $inputName . '" id="' . $inputID . '" value = "' . $inputValue . '" size="25" />';
+        $html .= '<input class="widefat" type="number" step="1" min="1" name= "' . $inputName . '" id="' . $inputID . '" value = "' . $inputValue . '" size="25" />';
+        $html .= '</p>';
+        echo $html;
+
+        $inputID = $this->get_field_id('interval');
+        $inputName = $this->get_field_name('interval');
+        $inputValue = @$instance['interval'];
+        $html = '';
+        $html .= '<p>';
+        $html .= '<label for=' . $inputID . '>Time to delay (sec) :</label>';
+        $html .= '<input class="widefat" type="number" step="1" min="1" name= "' . $inputName . '" id="' . $inputID . '" value = "' . $inputValue . '" size="25" />';
         $html .= '</p>';
         echo $html;
 
