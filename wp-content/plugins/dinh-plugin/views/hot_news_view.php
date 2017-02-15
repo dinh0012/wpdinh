@@ -1,6 +1,14 @@
 <?php
 $num_post = $instance['num_post'];
+$cat = explode(',', $instance['cat']);
 $arr = [
+    'tax_query' => [
+        [
+            'taxonomy' => 'loai-san-pham',                //(string) - Tên của taxonomy
+            'terms' => $cat,    //(int/string/array) - Slug của các terms bên trong taxonomy cần lấy bài
+            'operator' => 'IN'                    //(string) - Toán tử áp dụng cho mảng tham số này. Sử dụng 'IN' hoặc 'NOT IN'
+        ],
+    ],
     'post_type' => [
         'my-post-type' => 'sanpham'
     ],
@@ -26,7 +34,7 @@ $wp_query = new WP_Query($arr);
             $title = get_the_title();
             $thumbnail = get_the_post_thumbnail_url($post->ID);
             ?>
-
+            <input type="hidden">
             <div class="item <?php echo($i == 0 ? 'active' : '') ?>">
                 <a class="post" href="<?php echo the_permalink() ?>">
                     <img src="<?php echo $thumbnail ?>" alt="<?php echo $title ?>" width="460" height="345">
@@ -55,14 +63,17 @@ $wp_query = new WP_Query($arr);
         font-weight: 700;
         color: #d0021b;
     }
-    a.carousel-control,a.carousel-control:hover,a.carousel-control:focus {
+
+    a.carousel-control, a.carousel-control:hover, a.carousel-control:focus {
         color: inherit;
-        box-shadow:inherit;
-        background-image:inherit !important
+        box-shadow: inherit;
+        background-image: inherit !important
     }
-    a.post:hover{
+
+    a.post:hover {
         color: inherit;
     }
+
     .carousel-caption {
         /* left: 0; */
         bottom: 0;

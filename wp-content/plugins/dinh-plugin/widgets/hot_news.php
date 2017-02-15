@@ -36,11 +36,18 @@ class Hot_News extends WP_Widget
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['num_post'] = strip_tags($new_instance['num_post']);
+        $cat = implode(',', $new_instance['cat']);
+
+        $instance['cat'] = $cat;
         return $instance;
+
     }
 
     public function form($instance)
     {
+        $taxonomies = get_taxonomies(['name' => 'loai-san-pham'], 'object');
+        $loai_sp = get_terms($taxonomies['loai-san-pham']->name);
+        //var_dump($loai_sp);
         $inputID = $this->get_field_id('title');
         $inputName = $this->get_field_name('title');
         $inputValue = @$instance['title'];
@@ -63,12 +70,20 @@ class Hot_News extends WP_Widget
 
         $inputID = $this->get_field_id('cat');
         $inputName = $this->get_field_name('cat');
-        $inputValue = @$instance['cat'];
+        $cat = @$instance['cat'];
+        $cat_arr = explode(',', $cat);
         $html = '';
         $html .= '<p>';
         $html .= '<label for=' . $inputID . '>Choose Categgory :</label>';
-        $html .= '<input class="widefat" type="checkbox" name= "' . $inputName . '" id="' . $inputID . '" value = "' . $inputValue . '" size="25" />';
-        $html .= '<input class="widefat" type="checkbox" name= "' . $inputName . '" id="' . $inputID . '" value = "' . $inputValue . '" size="25" />';
+        foreach ($loai_sp as $sp) {
+            $html .= '<br>';
+            $check = '';
+            if ($check_cat = in_array ($sp->term_id, $cat_arr))
+                $check = 'checked';
+            $html .= '<input class="checkbox" type="checkbox" ' . $check . ' name= "' . $inputName . '[]" value="' . $sp->term_id . '"/>';
+            $html .= "<label>" . $sp->name . "</label>";
+        }
+        //$html .= '<input class="widefat" type="hidden" name= "' . $inputName . '" id="' . $inputID . '" value = "' . $inputValue . '" size="25" />';
         $html .= '</p>';
         echo $html;
 
