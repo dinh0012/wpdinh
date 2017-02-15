@@ -128,3 +128,16 @@
 }#woocommerce-product-images .inside .add_product_images {
      padding: 0 12px 12px;
  }
+
+
+ /*Style widget contact*/
+
+ .icon_add{
+    font-size: 22px;
+    display: inline-block;
+    float: right;
+ }
+ .icon_add:hover{
+    cursor: pointer;
+    color: red;
+ }

@@ -12,7 +12,7 @@ class Members extends WP_Widget {
     }
     
     public function widget( $args, $instance ) {
-    	 extract($args);
+        extract($args);
         $title = apply_filters('widget_title', $instance['title']);
         echo $before_widget;
         if (!empty($title)){
@@ -45,7 +45,7 @@ class Members extends WP_Widget {
     public function update( $new_instance, $old_instance ) {
        $instance = $old_instance;
     
-        $instance['title'] 		       = strip_tags($new_instance['title']);
+        $instance['title'] = strip_tags($new_instance['title']);
     
         return $instance;
     }
