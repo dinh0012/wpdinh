@@ -23,7 +23,7 @@ class Hot_News extends WP_Widget
             echo $before_title . $title . $after_title;
         }
         if (!empty($instance['num_post'])) {
-            require_once WIDGET_VIEWS_DIR . '/hot_news_view.php';
+            require WIDGET_VIEWS_DIR . '/hot_news_view.php';
 
         }
 
