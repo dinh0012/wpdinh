@@ -38,7 +38,6 @@ get_header();
                     $arr_image_gallery = explode(',', $image_gallery);
                     ?>
 
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                     <header>
                         <!-- Modal -->
                         <div id="myModal" class="modal fade" role="dialog">
@@ -50,7 +49,7 @@ get_header();
                                     </div>
                                     <div class="modal-body">
 
-                                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                        <div id="myCarouse1l" class="carousel slide" data-ride="carousel">
                                             <!-- Indicators -->
                                             <ol class="carousel-indicators">
                                                 <?php $i = 0;

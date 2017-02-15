@@ -19,7 +19,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <meta property="fb:app_id" content="270997346646206" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <?php wp_head(); ?>
 </head>
 <div id="fb-root"></div>
