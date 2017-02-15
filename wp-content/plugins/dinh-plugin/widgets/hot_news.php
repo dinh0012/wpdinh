@@ -17,13 +17,15 @@ class Hot_News extends WP_Widget
     public function widget($args, $instance)
     {
         extract($args);
+
         $title = apply_filters('widget_title', $instance['title']);
         echo $before_widget;
         if (!empty($title)) {
             echo $before_title . $title . $after_title;
         }
         if (!empty($instance['num_post'])) {
-            require_once WIDGET_VIEWS_DIR . '/hot_news_view.php';
+
+            require WIDGET_VIEWS_DIR . '/hot_news_view.php';
 
         }
 
