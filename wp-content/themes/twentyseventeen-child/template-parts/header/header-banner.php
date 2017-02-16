@@ -53,7 +53,7 @@
                                     <div class="autocomplete-suggestions"
                                          style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
                                 </div>
-                               
+
                             </div>
                             <!-- end search form -->
                         </div>
