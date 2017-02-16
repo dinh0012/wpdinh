@@ -78,6 +78,8 @@ a.custom-logo-link {
 	font-weight: 400;
 	background: #ffffff;
 	padding: 57px 0px 57px 0px;
+	padding: 57px 0px 57px 0px;
+	padding: 57px 0px 57px 0px;
 }
 .quick-access {
 	margin-top: 8px;
@@ -145,7 +147,7 @@ span.fa.fa-search:before{
 }
 input#yith-s_1 {
 	height: 50px;
-	width: 300px;
+	width: 280px;
 }
 .header {
 	background-image: url(http://www.newsmartwave.net/wordpress/venedor/default/wp-content/uploads/sites/2/layerslider/Home-Slider-Green-1/slider_bg_07.jpg);
