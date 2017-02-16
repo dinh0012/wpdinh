@@ -24,18 +24,17 @@ get_template_part('header/header-' . $setting_option['header']);
             foreach ($taxonomies as $taxonomy):
                 $loai_sp = get_terms($taxonomy->name);
                 foreach ($loai_sp as $sp):
-                    if (have_posts()) :
-                        ?>
-                        <header class="page-header">
+                    if (have_posts()) : ?>
+                        <div class="taxonomy">
+                        <div class="taxonomy-title">
                             <?php
                             echo '<h1 class="page-title">' . $sp->name . '</h1>';
                             //the_archive_description( '<div class="taxonomy-description">', '</div>' );
                             ?>
-                        </header><!-- .page-header -->
+                        </div><!-- .page-header -->
                     <?php endif; ?>
 
-                    <div id="primary" class="content-area">
-                        <main id="main" class="site-main" role="main">
+                    <div class="content-area row">
                             <?php
                             if (have_posts()) : ?>
                                 <?php
@@ -99,8 +98,8 @@ get_template_part('header/header-' . $setting_option['header']);
 
                             endif; ?>
 
-                        </main><!-- #main -->
                     </div><!-- #primary -->
+                    </div>
                 <?php endforeach;
             endforeach; ?>
         </div>

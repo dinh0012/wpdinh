@@ -26,13 +26,13 @@ function fb_meta()
     <meta property='fb:admins' content='Facebook numberic ID'/>
     <?php
 }
+
 $setting_option = get_option('theme_option');
 //get_header($setting_option['header']);
 get_template_part('header/header-' . $setting_option['header']);
 ?>
-?>
-    <div class="wrap">
-        <div id="primary" class="content-area">
+    <div class="container">
+        <div id="primary" class="col-sm-9 content-area">
             <main id="main" class="site-main" role="main">
                 <?php
                 /* Start the Loop */
@@ -106,7 +106,7 @@ get_template_part('header/header-' . $setting_option['header']);
                         </div>
                         <!--BEGIN: PRODUCT THUMBNAIL-->
 
-                        <div class="product-thumb" data-toggle="modal" data-target="#myModal">
+                        <div class="product-thumb col-sm-5" data-toggle="modal" data-target="#myModal">
                             <?php the_post_thumbnail('medium'); ?>
                         </div>
 
@@ -115,7 +115,7 @@ get_template_part('header/header-' . $setting_option['header']);
 
 
                         <!--BEGIN: PRODUCT INFO-->
-                        <div class="product-info">
+                        <div class="product-info col-sm-5">
                             <h1><?php the_title(); ?></h1> <!--Tiêu đề sản phẩm-->
                             <p class="product-price">
                                 <?php echo "<strong>Giá:</strong> " . get_post_meta($post->ID, 'price', true); ?>
@@ -141,23 +141,12 @@ get_template_part('header/header-' . $setting_option['header']);
 
             <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-numposts="10"></div>
         </div><!-- #primary -->
-        <?php get_sidebar(); ?>
-
-
+        <div class="col-sm-3">
+            <?php get_sidebar(); ?>
+        </div>
     </div><!-- .wrap -->
     <style>
         /*--Shop CSS--*/
-        .product-thumb {
-            width: 45%;
-            float: left;
-        }
-
-        .product-info {
-            width: 45%;
-            margin-left: 5%;
-            float: right;
-        }
-
         .product-info h1 {
             font-size: 1.5em;
             margin-bottom: 0.5em;
@@ -179,6 +168,7 @@ get_template_part('header/header-' . $setting_option['header']);
         .post-info {
             clear: both;
             padding-top: 15px;
+            text-align: justify;
         }
     </style>
 <?php //get_footer();

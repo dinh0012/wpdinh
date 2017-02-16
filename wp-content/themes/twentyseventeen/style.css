@@ -3284,7 +3284,6 @@ object {
 
 	.has-sidebar:not(.error404) #primary {
 		float: left;
-		width: 58%;
 	}
 
 	.has-sidebar #secondary {
@@ -3692,7 +3691,7 @@ object {
 	.panel-content .recent-posts .entry-content,
 	.page-two-column #primary .panel-content .recent-posts .entry-content {
 		float: none;
-		width: 100%;
+
 	}
 
 	.panel-content .recent-posts .entry-header {
