@@ -38,9 +38,9 @@ class Contact extends WP_Widget
         $instance['title_ct'] = strip_tags($new_instance['title_ct']);
         $instance['name_ct'] = strip_tags($new_instance['name_ct']);
         $instance['email_ct'] = strip_tags($new_instance['email_ct']);
-        $i=0;
-        foreach ($new_instance['phone_ct'] as $phone){
-            if($phone == '')
+        $i = 0;
+        foreach ($new_instance['phone_ct'] as $phone) {
+            if ($phone == '')
                 unset($new_instance['phone_ct'][$i]);
             $i++;
         }
@@ -68,56 +68,77 @@ class Contact extends WP_Widget
         $nameAddress = $this->get_field_name('address_ct');
         $valAddress = ($instance['address_ct']) ? $instance['address_ct'] : NULL;
         //Hiển thị form trong option của widget
-        var_dump($valPhone);
         ?>
-        <div class="form-group">
+        <p class="form-group">
             <label for="">Title</label>
-            <input type="text" class="form-control" id="" name="<?= $nameTitle; ?>" value="<?= $valTitle; ?>"
+            <input type="text" class="widefat" id="" name="<?= $nameTitle; ?>" value="<?= $valTitle; ?>"
                    placeholder="Title">
-        </div>
-        <div class="form-group">
+        </p>
+        <p class="form-group">
             <label for="">Name</label>
-            <input type="text" class="form-control" id="" name="<?= $nameName; ?>" value="<?= $valName; ?>"
+            <input type="text" class="widefat" id="" name="<?= $nameName; ?>" value="<?= $valName; ?>"
                    placeholder="Name">
-        </div>
-        <div class="form-group">
+        </p>
+        <p class="form-group">
             <label for="">Email</label>
-            <input type="text" class="form-control" id="" name="<?= $nameEmail; ?>" value="<?= $valEmail; ?>"
+            <input type="text" class="widefat" id="" name="<?= $nameEmail; ?>" value="<?= $valEmail; ?>"
                    placeholder="Email">
-        </div>
+        </p>
         <div class="form-group phone">
-            <label for="">Phone </label><i class=" add_phone glyphicon glyphicon-plus-sign icon_add"></i>
+            <label for="">Phone </label>
             <?php foreach ($phone_array as $phone): ?>
                 <div class="input-phone">
-                <?php if(!empty($phone)) echo '<span class=" remove_phone glyphicon glyphicon-remove icon_add"></span>' ?>
-                <input type="text" class="form-control " id="" name="<?= $namePhone; ?>[]" value="<?= $phone; ?>"
-                       placeholder="Phone">
+                    <?php if (!empty($phone)) echo '<span class=" remove_phone dashicons dashicons-no-alt"></span>' ?>
+                    <p><input type="text" class="widefat " id="" name="<?= $namePhone; ?>[]" value="<?= $phone; ?>"
+                           placeholder="Phone"></p>
                 </div>
             <?php endforeach; ?>
+
         </div>
-        <div class="form-group">
+        <p class="add_phone" style="text-align: center">Add New<span class=" dashicons dashicons-plus"></span></p>
+        <p class="form-group">
             <label for="">Fax</label>
-            <input type="text" class="form-control" id="" name="<?= $nameFax; ?>" value="<?= $valFax; ?>"
+            <input type="text" class="widefat" id="" name="<?= $nameFax; ?>" value="<?= $valFax; ?>"
                    placeholder="Fax">
-        </div>
+        </p>
 
-        <div class="form-group">
+        <p class="form-group">
             <label for="">Address</label>
-            <textarea name="<?= $nameAddress; ?>" id="input" class="form-control"
+            <textarea name="<?= $nameAddress; ?>" id="input" class="widefat"
                       rows="3"><?= $valAddress; ?></textarea>
-        </div>
-<script>
-$('.add_phone').click(function () {
-   $('.phone').append('<input type="text" class="form-control" id="" name="<?= $namePhone; ?>[]">');
-    //$('.phone').css('background','red');
-});
-$('.remove_phone').click(function () {
-    $(this).parent('.input-phone').remove();
+        </p>
+        <style>
+            span.remove_phone.dashicons.dashicons-no-alt {
+                position: absolute;
+                right: 0;
+                cursor: pointer;
+            }
+            span.remove_phone.dashicons.dashicons-no-alt:hover{
+                color: red;
+            }
+            p.add_phone {
+                cursor: pointer;
+                border: solid 1px #00a1ff;
+            }
+            p.add_phone:hover {
+                color: red;
+            }
+            .input-phone {
+                position: relative;
+            }
+        </style>
+        <script>
+            $('.add_phone').click(function () {
+                var input = $('.phone').append('<p><input type="text" class="widefat" id="" placeholder="Phone" name="<?= $namePhone; ?>[]"></p>');
 
-});
+            });
+            $('.remove_phone').click(function () {
+                $(this).parent('.input-phone').remove();
+
+            });
 
 
-</script>
+        </script>
         <?php
 
 

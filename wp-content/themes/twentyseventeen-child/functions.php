@@ -12,20 +12,20 @@ function admin_styles()
 {
     wp_register_style('admin_css', get_theme_file_uri() . '/assets/css/admin.css');
     wp_enqueue_style('admin_css');
-    wp_register_style('bootstrap_3', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-    wp_enqueue_style('bootstrap_3');
+    /*wp_register_style('bootstrap_3', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+    wp_enqueue_style('bootstrap_3');*/
 }
 
 function script_settup()
 {
     wp_register_script('js_admin', get_theme_file_uri() . '/assets/js/admin.js', array('jquery'), '2.1.2', true);
     wp_enqueue_script('js_admin');
-    wp_register_script('jquery_1.9', 'http://code.jquery.com/jquery-1.9.1.js');
+  wp_register_script('jquery_1.9', 'http://code.jquery.com/jquery-1.9.1.js');
     wp_enqueue_script('jquery_1.9');
-    wp_register_script('bootstrap_3_js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
-    wp_enqueue_script('bootstrap_3_js');
-    wp_register_script('my_script', get_theme_file_uri() . '/assets/js/myScript.js');
-    wp_enqueue_script('my_script');
+    /*   wp_register_script('bootstrap_3_js', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+     wp_enqueue_script('bootstrap_3_js');
+     wp_register_script('my_script', get_theme_file_uri() . '/assets/js/myScript.js');
+     wp_enqueue_script('my_script');*/
 }
 
 add_action('admin_enqueue_scripts', 'script_settup');
@@ -294,7 +294,6 @@ function register_setting_and_field()
     add_settings_field('header', '
                             Select Header', 'header_setting', 'theme-setting', 'set_header_section');
 }
-
 function validate_setting($data_input)
 {
     return $data_input;
