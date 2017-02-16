@@ -53,75 +53,7 @@
                                     <div class="autocomplete-suggestions"
                                          style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
                                 </div>
-                                <script type="text/javascript">
-                                    jQuery(function ($) {
-                                        var search_loader_url = js_venedor_vars.ajax_loader_url;
-
-                                        $('#yith-s_1').yithautocomplete({
-                                            minChars: 3,
-                                            appendTo: '.yith-ajaxsearchform-container_1',
-                                            serviceUrl: '/wordpress/venedor/default/wp-admin/admin-ajax.php?action=yith_ajax_search_products',
-                                            onSearchStart: function () {
-                                                $(this).css({
-                                                    'background-image': 'url(' + search_loader_url + ')',
-                                                    'background-repeat': 'no-repeat'
-                                                });
-                                            },
-                                            onSearchComplete: function () {
-                                                $(this).css({
-                                                    'background-image': 'none',
-                                                    'background-repeat': 'no-repeat'
-                                                });
-                                            },
-                                            onSelect: function (suggestion) {
-                                                if (suggestion.id != -1) {
-                                                    window.location.href = suggestion.url;
-                                                }
-                                            },
-                                            formatResult: function (suggestion, currentValue) {
-                                                var pattern = '(' + $.YithAutocomplete.utils.escapeRegExChars(currentValue) + ')';
-                                                var html = '';
-
-                                                if (typeof suggestion.img !== 'undefined') {
-                                                    html += suggestion.img;
-                                                }
-
-                                                html += '<div class="yith_wcas_result_content"><div class="title">';
-                                                html += suggestion.value.replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>');
-                                                html += '</div>';
-
-                                                if (typeof suggestion.div_badge_open !== 'undefined') {
-                                                    html += suggestion.div_badge_open;
-                                                }
-
-                                                if (typeof suggestion.on_sale !== 'undefined') {
-                                                    html += suggestion.on_sale;
-                                                }
-
-                                                if (typeof suggestion.featured !== 'undefined') {
-                                                    html += suggestion.featured;
-                                                }
-
-                                                if (typeof suggestion.div_badge_close !== 'undefined') {
-                                                    html += suggestion.div_badge_close;
-                                                }
-
-                                                if (typeof suggestion.price !== 'undefined' && suggestion.price != '') {
-                                                    html += ' ' + suggestion.price;
-                                                }
-
-                                                if (typeof suggestion.excerpt !== 'undefined') {
-                                                    html += ' ' + suggestion.excerpt.replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>');
-                                                }
-
-                                                html += '</div>';
-
-
-                                                return html;
-                                            }
-                                        });
-                                    });
-                                </script>
+                               
                             </div>
                             <!-- end search form -->
                         </div>
