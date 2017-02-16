@@ -40,15 +40,13 @@
                             <div id="search-form" class="bottom">
                                 <div class="yith-ajaxsearchform-container_1">
                                     <form role="search" method="get" id="yith-ajaxsearchform"
-                                          action="http://wp.dev/"
+                                          action="<?php echo esc_url(home_url('/')); ?>"
                                           class="searchform">
                                     <span class="text"><input type="search" value="" name="s" id="yith-s_1"
                                                               placeholder="Search here" autocomplete="off"></span>
                                         <span class="button-wrap"><button id="yith-searchsubmit" class="btn btn-special"
                                                                           title="Search" type="submit"><span
                                                     class="fa fa-search"></span></button></span>
-                                        <input type="hidden" name="post_type" value="product"
-                                               style="display: inline-block; width: 200px; left: -200px;">
                                     </form>
                                     <div class="autocomplete-suggestions"
                                          style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
