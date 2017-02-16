@@ -12,7 +12,10 @@
  * @version 1.0
  */
 
-get_header(); ?>
+$setting_option = get_option('theme_option');
+//get_header($setting_option['header']);
+get_template_part('header/header-' . $setting_option['header']);
+?>
 
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
@@ -51,4 +54,7 @@ get_header(); ?>
 	</main><!-- #main -->
 </div><!-- #primary -->
 
-<?php get_footer();
+<?php //get_footer();
+$setting_option = get_option('theme_option');
+//get_header($setting_option['header']);
+get_template_part('footer/footer-' . $setting_option['footer'], 'none');

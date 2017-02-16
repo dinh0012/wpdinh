@@ -10,8 +10,10 @@
  * @version 1.0
  */
 
-get_header(); ?>
-
+$setting_option = get_option('theme_option');
+//get_header($setting_option['header']);
+get_template_part('header/header-' . $setting_option['header']);
+?>
 	<div class="wrap">
 
 		<?php if ( have_posts() ) : ?>
@@ -115,4 +117,7 @@ get_header(); ?>
 		}*/
 
 	</style>
-<?php get_footer();
+<?php //get_footer();
+$setting_option = get_option('theme_option');
+//get_header($setting_option['header']);
+get_template_part('footer/footer-' . $setting_option['footer'], 'none');

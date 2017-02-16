@@ -2,9 +2,22 @@
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 function my_theme_enqueue_styles()
 {
+    wp_enqueue_style('bootstrap-style', get_template_directory_uri() . '-child/assets/css/bootstrap.css');
     wp_enqueue_style('parent-style', get_template_directory_uri() . '/style.css');
 
 }
+function sidbar_init() {
+    register_sidebar( array(
+        'name'          => __( 'Header', 'twentyseventeen-child' ),
+        'id'            => 'sidebar-header',
+        'description'   => __( 'Add widgets here to appear in your Header.', 'twentyseventeen-child' ),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'sidbar_init' );
 
 //****************THEM CSS JS************************
 
