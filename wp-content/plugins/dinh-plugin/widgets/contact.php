@@ -15,21 +15,7 @@ class Contact extends WP_Widget
     public function widget($args, $instance)
     {
         extract($args);
-        $title = apply_filters('widget_title', $instance['title_ct']);
-        echo $before_widget;
-        if (!empty($title)) {
-            echo $before_title . $title . $after_title . '<hr />';
-        }
-        if (!empty($instance['name_ct'])) {
-            echo '<p>Name: ' . $instance['name_ct'] . '</p> <hr />';
-            echo '<p>Email: ' . $instance['email_ct'] . '</p> <hr />';
-            echo '<p>Phone: ' . $instance['phone_ct'] . '</p> <hr />';
-            echo '<p>Fax: ' . $instance['fax_ct'] . '</p> <hr />';
-            echo '<p>Address: ' . $instance['address_ct'] . '</p> <hr />';
-        }
-
-        echo $after_widget;
-
+        require WIDGET_VIEWS_DIR . '/contact_view.php';
     }
 
     public function update($new_instance, $old_instance)
@@ -90,7 +76,7 @@ class Contact extends WP_Widget
                 <div class="input-phone">
                     <?php if (!empty($phone)) echo '<span class=" remove_phone dashicons dashicons-no-alt"></span>' ?>
                     <p><input type="text" class="widefat " id="" name="<?= $namePhone; ?>[]" value="<?= $phone; ?>"
-                           placeholder="Phone"></p>
+                              placeholder="Phone"></p>
                 </div>
             <?php endforeach; ?>
 
@@ -113,23 +99,27 @@ class Contact extends WP_Widget
                 right: 0;
                 cursor: pointer;
             }
-            span.remove_phone.dashicons.dashicons-no-alt:hover{
+
+            span.remove_phone.dashicons.dashicons-no-alt:hover {
                 color: red;
             }
+
             p.add_phone {
                 cursor: pointer;
                 border: solid 1px #00a1ff;
             }
+
             p.add_phone:hover {
                 color: red;
             }
+
             .input-phone {
                 position: relative;
             }
         </style>
         <script>
             $('.add_phone').click(function () {
-                var input = $('.phone').append('<p><input type="text" class="widefat" id="" placeholder="Phone" name="<?= $namePhone; ?>[]"></p>');
+                $('.phone').append('<p><input type="text" class="widefat" id="" placeholder="Phone" name="<?= $namePhone; ?>[]"></p>');
 
             });
             $('.remove_phone').click(function () {

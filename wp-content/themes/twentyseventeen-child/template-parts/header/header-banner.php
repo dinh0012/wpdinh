@@ -128,26 +128,12 @@
                     </div>
                 </div>
                 <!-- header right -->
-                <div class="col-sm-4 right">
-                    <!-- header contact -->
-                    <div class="header-contact right clearfix">
-                        <div class="well header-block ">
-                            <i class="ionicon icon-person" style=""></i> +(404) 158 14 25 78
-                            <br>
-                            <i class="ionicon icon-phone" style=""></i> +(404) 158 14 25 78
-                            <br>
-                            <i class="ionicon icon-phone" style=""></i> +(404) 851 21 48 15
-                        </div>
-                        <div class="well header-block right ">
-                            <i class="ionicon icon-fb" style=""></i> venedor_support
-                            <br>
-                            <i class="ionicon icon-youtube" style=""></i> venedor_support
-                            <br>
-                            <i class="ionicon icon-skype" style=""></i> support@venedor.com
-                        </div>
-                    </div>
-                    <!-- end header contact -->
-                </div>
+                <?php if ( is_active_sidebar( 'sidebar-header' )):
+                ?>
+                    <?php dynamic_sidebar( 'sidebar-header' ); ?>
+
+                <?php endif; ?>
+
                 <!-- header right -->
             </div>
         </div>

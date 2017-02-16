@@ -110,7 +110,7 @@ a.custom-logo-link {
 	background: #7bae23;
 	color: #ffffff;
 }
-span.fa.fa-search:before,.icon-fb:before,.icon-phone:before,.icon-skype:before, .icon-youtube:before,.icon-person:before{
+span.fa.fa-search:before,.icon-fb:before,.icon-phone:before,.icon-skype:before, .icon-youtube:before,.icon-person:before,.icon-home:before{
 	font-family: Ionicons;
 	font-size: 20px;
 	
@@ -140,9 +140,14 @@ span.fa.fa-search:before{
 
 	content: '\f24d';
 }
+.icon-home:before{
+
+	content: '\f448';
+}
+
 .ionicon{
 	display: inline-block;
-	width: 20px;
+	width: 25px;
 	color: #7bae23;
 }
 input#yith-s_1 {
@@ -157,7 +162,7 @@ input#yith-s_1 {
 	line-height: 1.5;
 	padding: 5px 11px;
 	margin-left: 10px;
-	border-radius: 0;
+	border-radius: 5px;
 }
 .header .container{
 	margin-left: auto;
