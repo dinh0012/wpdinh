@@ -42,6 +42,7 @@ class Hot_News extends WP_Widget
         $instance['cat'] = $cat;
         return $instance;
 
+
     }
 
     public function form($instance)
