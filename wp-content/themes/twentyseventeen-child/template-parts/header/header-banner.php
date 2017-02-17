@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <!-- header left -->
-                <div class="col-sm-4 left">
+                <div class="col-sm-3 left">
                     <!-- logo -->
                     <h1 class="logo">
                         <a href="<?php echo esc_url(home_url('/')); ?>"
@@ -34,33 +34,35 @@
                 </div>
                 <!-- end header left -->
                 <div class="col-sm-4">
-                    <div class="wrap">
-                        <div class="quick-access">
-                            <!-- search form -->
-                            <div id="search-form" class="bottom">
-                                <div class="yith-ajaxsearchform-container_1">
-                                    <form role="search" method="get" id="yith-ajaxsearchform"
-                                          action="<?php echo esc_url(home_url('/')); ?>"
-                                          class="searchform">
+
+                    <div class="quick-access">
+                        <!-- search form -->
+                        <div id="search-form" class="bottom">
+                            <div class="yith-ajaxsearchform-container_1">
+                                <form role="search" method="get" id="yith-ajaxsearchform"
+                                      action="<?php echo esc_url(home_url('/')); ?>"
+                                      class="searchform">
                                     <span class="text"><input type="search" value="" name="s" id="yith-s_1"
                                                               placeholder="Search here" autocomplete="off"></span>
-                                        <span class="button-wrap"><button id="yith-searchsubmit" class="btn btn-special"
-                                                                          title="Search" type="submit"><span
-                                                    class="fa fa-search"></span></button></span>
-                                    </form>
-                                    <div class="autocomplete-suggestions"
-                                         style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
-                                </div>
-
+                                    <span class="button-wrap"><button id="yith-searchsubmit" class="btn btn-special"
+                                                                      title="Search" type="submit"><span
+                                                class="fa fa-search"></span></button></span>
+                                </form>
+                                <div class="autocomplete-suggestions"
+                                     style="position: absolute; display: none; max-height: 300px; z-index: 9999;"></div>
                             </div>
-                            <!-- end search form -->
+
                         </div>
+                        <!-- end search form -->
                     </div>
                 </div>
                 <!-- header right -->
                 <?php if (is_active_sidebar('sidebar-header')):
                     ?>
-                    <?php dynamic_sidebar('sidebar-header'); ?>
+
+                    <div class="col-sm-5 right">
+                        <?php dynamic_sidebar('sidebar-header'); ?>
+                    </div>
 
                 <?php endif; ?>
 
@@ -82,6 +84,7 @@
         height: 50px;
         width: 280px;
     }
+
     .header {
         color: #494940;
         font-size: 14px;
@@ -93,7 +96,7 @@
     }
 
     .header {
-        background-image: url(http://www.newsmartwave.net/wordpress/venedor/default/wp-content/uploads/sites/2/layerslider/Home-Slider-Green-1/slider_bg_07.jpg) ;
+        background-image: url(http://www.newsmartwave.net/wordpress/venedor/default/wp-content/uploads/sites/2/layerslider/Home-Slider-Green-1/slider_bg_07.jpg);
     }
 
     .header-block.well {

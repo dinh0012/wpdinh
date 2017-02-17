@@ -5,8 +5,6 @@ $phone_array = explode(',', $phone);
 $add = $instance['address_ct'];
 ?>
 
-
-<div class="col-sm-4 right">
     <div class="header-contact right clearfix">
         <div class="well header-block ">
             <span title="Liên hệ"><i  class="ionicon icon-person" style=""></i><?php echo $name ?></span>
@@ -25,7 +23,7 @@ $add = $instance['address_ct'];
         </div>
 
     </div>
-</div>
+
 <!--
 <div class="col-sm-4 right">
     <div class="header-contact right clearfix">
