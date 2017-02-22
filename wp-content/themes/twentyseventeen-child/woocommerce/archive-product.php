@@ -41,12 +41,14 @@ do_action('woocommerce_before_main_content');
 <?php endif; ?>
 
 <?php
+
 $arr = [
 
     'post_type' => [
         'my-post-type' => 'product'
     ],
-    'posts_per_page' => 16
+    'posts_per_page' => 24,
+    'orderby'=>'ID'
 ];
 $wp_query = new WP_Query($arr);
 /**
@@ -58,7 +60,7 @@ $wp_query = new WP_Query($arr);
 do_action('woocommerce_archive_description');
 ?>
 
-<?php if ($wp_query->have_posts()) : ?>
+<?php if (have_posts()) : ?>
 
     <?php
     /**
@@ -76,7 +78,7 @@ do_action('woocommerce_archive_description');
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <?php $j = 0;
-            while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
+            while (have_posts()) : the_post(); ?>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <?php if ($j % 4 == 0): ?>
@@ -160,7 +162,7 @@ do_action('woocommerce_archive_description');
     <?php woocommerce_product_loop_end(); ?>
 
     <?php
-    $get_terms=get_terms('product_cat');
+    $get_terms = get_terms('product_cat');
     /**
      * woocommerce_after_shop_loop hook.
      *
@@ -169,7 +171,16 @@ do_action('woocommerce_archive_description');
     do_action('woocommerce_after_shop_loop');
     ?>
     <h1 class="page-title">Danh mục sản phẩm</h1>
-    <?php //foreach ($get_terms as $term): ?>
+    <?php foreach ($get_terms as $term): ?>
+        <?php $attachment_id= get_term_meta($term->term_id,'thumbnail_id',true);
+        $thumbnail = wp_get_attachment_image($attachment_id, 'thumbnail');
+        ?>
+        <div class="col-sm-3">
+            <div class="thubnail"><?php echo $thumbnail ?></div>
+            <div class="title"><?php echo $term->name ?></div>
+
+        </div>
+    <?php endforeach; ?>
 
 <?php elseif (!woocommerce_product_subcategories(array('before' => woocommerce_product_loop_start(false), 'after' => woocommerce_product_loop_end(false)))) : ?>
 

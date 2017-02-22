@@ -20,21 +20,30 @@ get_template_part('header/header-' . $setting_option['header']);
 ?>
     <div class="container">
         <div class="col-sm-9">
-            <?php $taxonomies = get_taxonomies(['name' => 'loai-san-pham'], 'object');
-            foreach ($taxonomies as $taxonomy):
-                $loai_sp = get_terms($taxonomy->name);
-                foreach ($loai_sp as $sp):
-                    if (have_posts()) : ?>
-                        <div class="taxonomy">
-                        <div class="taxonomy-title">
-                            <?php
-                            echo '<h1 class="page-title">' . $sp->name . '</h1>';
-                            //the_archive_description( '<div class="taxonomy-description">', '</div>' );
-                            ?>
-                        </div><!-- .page-header -->
-                    <?php endif; ?>
-
-                    <div class="content-area row">
+            <?php if (isset($_GET['tin-tuc']) && !empty($_GET['tin-tuc'])): ?>
+                <?php $id = $_GET['tin-tuc'];
+                global $wpdb;
+                $prefix = $wpdb->prefix;
+                $table_baiviet = $prefix . 'tintuc_baiviet';
+                $baiviet = $wpdb->get_row("SELECT * FROM $table_baiviet WHERE id = $id", OBJECT);
+                ?>
+                <div class="title"><h1><?php echo $baiviet->ten_bai_viet ?></php></h1></div>
+                <div class="content"><?php echo $baiviet->chi_tiet_bai_viet ?></php></div>
+            <?php else: ?>
+                <?php $taxonomies = get_taxonomies(['name' => 'loai-san-pham'], 'object');
+                foreach ($taxonomies as $taxonomy):
+                    $loai_sp = get_terms($taxonomy->name);
+                    foreach ($loai_sp as $sp):
+                        if (have_posts()) : ?>
+                            <div class="taxonomy">
+                            <div class="taxonomy-title">
+                                <?php
+                                echo '<h1 class="page-title">' . $sp->name . '</h1>';
+                                //the_archive_description( '<div class="taxonomy-description">', '</div>' );
+                                ?>
+                            </div><!-- .page-header -->
+                        <?php endif; ?>
+                        <div class="content-area row">
                             <?php
                             if (have_posts()) : ?>
                                 <?php
@@ -98,10 +107,11 @@ get_template_part('header/header-' . $setting_option['header']);
 
                             endif; ?>
 
-                    </div><!-- #primary -->
-                    </div>
-                <?php endforeach;
-            endforeach; ?>
+                        </div><!-- #primary -->
+                        </div>
+                    <?php endforeach;
+                endforeach; ?>
+            <?php endif; ?>
         </div>
         <div class="col-sm-3">
             <?php get_sidebar(); ?>

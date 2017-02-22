@@ -10,14 +10,14 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	https://docs.woocommerce.com/document/template-structure/
+ * @see    https://docs.woocommerce.com/document/template-structure/
  * @author  WooThemes
  * @package WooCommerce/Templates
  * @version 2.4.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (!defined('ABSPATH')) {
+    exit;
 }
 
 /**
@@ -26,23 +26,54 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Each tab is an array containing title, callback and priority.
  * @see woocommerce_default_product_tabs()
  */
-$tabs = apply_filters( 'woocommerce_product_tabs', array() );
+$tabs = apply_filters('woocommerce_product_tabs', array());
+if (!empty($tabs)) : ?>
 
-if ( ! empty( $tabs ) ) : ?>
-
-	<div class="woocommerce-tabs wc-tabs-wrapper">
+    <!--	<div class="woocommerce-tabs wc-tabs-wrapper">
 		<ul class="tabs wc-tabs">
-			<?php foreach ( $tabs as $key => $tab ) : ?>
-				<li class="<?php echo esc_attr( $key ); ?>_tab">
-					<a href="#tab-<?php echo esc_attr( $key ); ?>"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></a>
+			<?php /*foreach ( $tabs as $key => $tab ) : */ ?>
+				<li class="<?php /*echo esc_attr( $key ); */ ?>_tab">
+					<a href="#tab-<?php /*echo esc_attr( $key ); */ ?>"><?php /*echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); */ ?></a>
 				</li>
-			<?php endforeach; ?>
+			<?php /*endforeach; */ ?>
 		</ul>
-		<?php foreach ( $tabs as $key => $tab ) : ?>
-			<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>">
-				<?php call_user_func( $tab['callback'], $key, $tab ); ?>
+		<?php /*foreach ( $tabs as $key => $tab ) : */ ?>
+			<div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php /*echo esc_attr( $key ); */ ?> panel entry-content wc-tab" id="tab-<?php /*echo esc_attr( $key ); */ ?>">
+				<?php /*call_user_func( $tab['callback'], $key, $tab ); */ ?>
 			</div>
-		<?php endforeach; ?>
-	</div>
+		<?php /*endforeach; */ ?>
+	</div>-->
+    <div class="woocommerce-tabs tab-product" style="clear: both">
+        <ul class="nav nav-tabs">
+            <?php $i = 0;
+            foreach ($tabs as $key => $tab) : ?>
+                <li class="<?php echo esc_attr($key); ?>_tab <?php echo ($i == 0) ? 'active' : '';
+                $i++; ?>">
+                    <a data-toggle="tab" href="#<?php echo $tab['callback'] ?>"><?php echo $tab['title'] ?></a>
+                </li>
+            <?php endforeach; ?>
+
+        </ul>
+
+        <div class="tab-content">
+            <?php $i = 0;
+            foreach ($tabs as $key => $tab) : ?>
+                <div id="<?php echo $tab['callback'] ?>" class="tab-pane fade in <?php echo ($i == 0) ? 'active' : '';
+                $i++; ?>">
+                    <?php call_user_func($tab['callback'], $key, $tab); ?>
+                </div>
+            <?php endforeach; ?>
+
+
+        </div>
+    </div>
 
 <?php endif; ?>
+<style>
+
+    .woocommerce-tabs li.active a,.woocommerce-tabs a:hover {
+        box-shadow: none;
+    }
+    .woocommerce-tabs a {
+        box-shadow: none;
+</style>

@@ -20,7 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-get_header( 'shop' ); ?>
+$setting_option = get_option('theme_option');
+//get_header($setting_option['header']);
+get_template_part('header/header-' . $setting_option['header']);
+?>
 
 	<?php
 		/**

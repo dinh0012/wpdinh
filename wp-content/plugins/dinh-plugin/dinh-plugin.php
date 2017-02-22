@@ -15,15 +15,56 @@ Author URI: None
 define('WIDGET_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('WIDGET_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WIDGET_VIEWS_DIR', WIDGET_PLUGIN_DIR . '/views');
-define('WIDGET_INCLUDES_DIR', WIDGET_PLUGIN_DIR . '/includes');
+define('WIDGET_INCLUDES_DIR', WIDGET_PLUGIN_DIR . 'includes');
 define('WIDGET_DIR', WIDGET_PLUGIN_DIR . '/widgets');
 if (!is_admin()) {
 }
+
+
+
+function settingMenu1()
+{
+    add_menu_page(
+        'Auto Lấy Tin',
+        'Auto Lấy Tin',
+        'manage_options',
+        'lay-tin',
+        'form_laytin'
+    );
+}
+
+function form_laytin()
+{
+    include_once 'views/laytin_view.php';
+    if (isset($_POST['submit'])){
+        require_once WIDGET_INCLUDES_DIR . '/lay_tin_news.php';
+        $link = $_POST['link'];
+        $element = $_POST['link-element'];
+        $laytin = new Lay_Tin_News($link);
+        $danhsach = $laytin->getTitle_link($element);
+        ?>
+        <div class="danh-sach">
+            <p>Danh sách các tin</p>
+            <?php foreach ($danhsach as $value):?>
+                <div class="item"><?php echo $value['content']?></div>
+            <?php endforeach;?>
+        </div>
+        <?php
+
+
+    }
+}
+
+add_action('admin_menu', 'settingMenu1');
+
 
 require_once WIDGET_DIR . '/widget_demo.php';
 require_once WIDGET_DIR . '/members.php';
 require_once WIDGET_DIR . '/contact.php';
 require_once WIDGET_DIR . '/hot_news.php';
+require_once WIDGET_DIR . '/tintuc.php';
+
+
 add_action('widgets_init', 'create_widget');
 function create_widget()
 {
@@ -31,6 +72,7 @@ function create_widget()
     register_widget('Members');
     register_widget('Contact');
     register_widget('Hot_News');
+    register_widget('Tintuc');
 }
 
 function create_youtube_shortcode($args, $content)
